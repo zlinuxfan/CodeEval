@@ -12,10 +12,10 @@ public class FizzBuzz {
         String patchFile = args[0];
         BufferedReader file = new BufferedReader(new FileReader(patchFile));
 
-        ArrayList<ArrayList> arrayList = readFromFile(file);
+        ArrayList<ArrayList<Integer>> arrayList = readFromFile(file);
 
         for (ArrayList<Integer> list: arrayList) {
-            System.out.println(toString(list));
+//            System.out.println(toString(list));
             System.out.println(makeFizzBuzz(list));
         }
 
@@ -47,8 +47,8 @@ public class FizzBuzz {
         return str;
     }
 
-    public static ArrayList<ArrayList> readFromFile(BufferedReader file) throws IOException {
-        ArrayList<ArrayList> arrayList = new ArrayList<>();
+    public static ArrayList<ArrayList<Integer>> readFromFile(BufferedReader file) throws IOException {
+        ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
         ArrayList<Integer> list;
         String str;
 
