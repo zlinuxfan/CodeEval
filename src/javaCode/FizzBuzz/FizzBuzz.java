@@ -1,55 +1,67 @@
 package javaCode.FizzBuzz;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /***
- * Created by ZLinuxFan on 28.11.15.
+ * Created by ZLinuxFan on 12.03.16.
  ***/
 public class FizzBuzz {
-    private static String fileName = "/home/kde/IdeaProjects/CodeEval/src/javaCode/FizzBuzz/fizzBuzz.txt";
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) throws FileNotFoundException{
-        String textFromFile = read(fileName);
+        String patchFile = args[0];
+        BufferedReader file = new BufferedReader(new FileReader(patchFile));
 
-        for (int i = 0; i < textFromFile.length(); i++) {
+        ArrayList<ArrayList> arrayList = readFromFile(file);
 
-                System.out.print(textFromFile.charAt(i));
-
+        for (ArrayList<Integer> list: arrayList) {
+            System.out.println(toString(list));
+            System.out.println(makeFizzBuzz(list));
         }
-
 
     }
 
-    public static String read(String fileName) throws FileNotFoundException {
-        StringBuilder sb = new StringBuilder();
-        File file = new File(fileName);
+    public static String makeFizzBuzz(ArrayList<Integer> list) {
+        String str = "";
 
-        exists(fileName);
+        for (int i = 1; i <= list.get(2); i++) {
+            if ((i % list.get(0)) == 0 && (i % list.get(1)) == 0) {
+                str += "FB" + " ";
+            } else if (i % list.get(0) == 0) {
+                str += "F" + " ";
+            } else if (i % list.get(1) == 0) {
+                str += "B" + " ";
+            } else
+                str += i + " ";
+        }
 
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
-            try {
-                String str;
-                while ((str = in.readLine()) != null) {
-                    sb.append(str);
-                    sb.append("\n");
-                }
-            } finally {
-                in.close();
+        return str;
+    }
+
+    public static String toString(ArrayList<Integer> arrayList) {
+        String str = "";
+
+        for (Integer el: arrayList) {
+            str += el + " ";
+        }
+        return str;
+    }
+
+    public static ArrayList<ArrayList> readFromFile(BufferedReader file) throws IOException {
+        ArrayList<ArrayList> arrayList = new ArrayList<>();
+        ArrayList<Integer> list;
+        String str;
+
+        while ((str = file.readLine()) != null) {
+            list = new ArrayList<>();
+            String[] lineFromFile = str.split(" ");
+
+            for (String el : lineFromFile) {
+                if (!el.equals(" "))
+                    list.add(Integer.parseInt(el));
             }
-        } catch(IOException e) {
-            throw new RuntimeException(e);
+            arrayList.add(list);
         }
-
-        return sb.toString();
-    }
-
-    public static void exists(String fileName) throws FileNotFoundException {
-
-        File file = new File(fileName);
-
-        if (!file.exists()) {
-            throw new FileNotFoundException(file.getName());
-        }
+        return arrayList;
     }
 }
