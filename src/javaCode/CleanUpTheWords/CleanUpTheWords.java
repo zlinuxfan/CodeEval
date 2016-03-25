@@ -1,61 +1,38 @@
 package javaCode.CleanUpTheWords;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /*****
- * ** Created by kde on 24.03.16, 21:15
+ * ** Created by kde on 25.03.16, 11:54
  ****/
 public class CleanUpTheWords {
     public static void main(String[] args) throws IOException {
-        ArrayList<String> cleanWords = cleanWords(args[0]);
+        BufferedReader file = new BufferedReader(new FileReader(args[0]));
 
-        for (int i = 1; i < cleanWords.size(); i++) {
-            if (cleanWords.get(i).equals("\n")) {
-                System.out.print(cleanWords.get(i-1) + cleanWords.get(i++));
-            } else {
-                System.out.print(cleanWords.get(i-1) + " ");
-            }
-
-            if (i == cleanWords.size()-1) {
-                System.out.print(cleanWords.get(i));
-            }
-        }
+        System.out.print(readFromFile(file));
     }
 
-    public static ArrayList<String> cleanWords(String fileName) throws
-            IOException {
-        java.io.FileInputStream fileInputStream = new java.io.FileInputStream(fileName);
-        ArrayList<String> listWords = new ArrayList<>();
+    public static String cleanUp(String str) {
+        StringBuilder result = new StringBuilder();
 
-        String strWord = "";
-        int str;
-        boolean flag = false;
-
-        while (fileInputStream.available() > 0) {
-            str = fileInputStream.read();
-
-            if ((str > 64 && str < 90 && (fileInputStream.available() > 0))) {
-                str += 32;
-            }
-
-            if ((str > 96 && str < 123 && (fileInputStream.available() > 0))) {
-
-                strWord += (char) str;
-                flag = true;
-
-            } else {
-                if (flag) {
-                    listWords.add(strWord);
-                }
-                if (str == 10 || str == 12) {
-                    listWords.add("\n");
-                }
-                strWord = "";
-                flag = false;
-            }
+        for (String s : str.split("[^a-zA-Z]+")) {
+            result.append(' ').append(s);
         }
-
-        return listWords;
+        return result.toString().toLowerCase().trim();
     }
+
+    public static String readFromFile(BufferedReader file) throws IOException {
+
+        String str = file.readLine(),
+               answer = "";
+
+        do {
+            answer += cleanUp(str) + "\n";
+        } while ((str = file.readLine()) != null);
+        return answer;
+    }
+
+
 }
