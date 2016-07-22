@@ -2,3 +2,5 @@ CodeEval.iml
 .idea/
 out/
 tmp/
+src/C#Code/*/*/obj/*
+src/C#Code/*/*/bin/*
