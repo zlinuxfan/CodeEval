@@ -39,13 +39,13 @@ namespace nFizzBuzz {
             var answer = "";
 
             for (int i = 1; i <= andNumber; i ++) {
-                if (i % firstNumber == 0) {
+                 if (i % firstNumber == 0 && i % secondNumber == 0) {
+                    answer += "FB";
+                } else if (i % firstNumber == 0) {
                     answer += "F";
                 } else if (i % secondNumber == 0) {
                     answer += "B";
-                } else if (i % firstNumber == 0 && i % secondNumber == 0) {
-                    answer += "FB";
-                }
+                } 
                 if (i != andNumber) {
                     answer += " ";
                 }

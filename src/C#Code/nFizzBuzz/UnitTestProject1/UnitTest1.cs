@@ -24,6 +24,11 @@ namespace UnitTestProject1 {
         public void Should_return_F_FB_for_1_2_2() {
             Assert.AreEqual("F FB", fizzBuzz.play("1 2 2"));
         }
+
+        [TestMethod]
+        public void Should_return_F_FB_F() {
+            Assert.AreEqual("F FB F", fizzBuzz.play("1 2 3"));
+        }
     }
 
 }
