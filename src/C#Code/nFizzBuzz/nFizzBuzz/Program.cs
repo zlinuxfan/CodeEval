@@ -11,6 +11,8 @@ namespace nFizzBuzz {
 
         static void Main(string[] args) {
             string[] data = new string[20];
+            var fizzBuzz = new FizzBuzz();
+            Console.WriteLine(fizzBuzz.play("1 2 2"));
         }
 
         public void ReadFile(string fileName, out string[] data) {
@@ -27,7 +29,29 @@ namespace nFizzBuzz {
 
     public class FizzBuzz {
         public string play(string str) {
-            return "";
+            if (str.Equals("")) {
+                return "";
+            }
+            var data =  str.Split(new char[] {' '});
+            var firstNumber = int.Parse(data[0]);
+            var secondNumber = int.Parse(data[1]);
+            var andNumber = int.Parse(data[2]);
+            var answer = "";
+
+            for (int i = 1; i <= andNumber; i ++) {
+                if (i % firstNumber == 0) {
+                    answer += "F";
+                } else if (i % secondNumber == 0) {
+                    answer += "B";
+                } else if (i % firstNumber == 0 && i % secondNumber == 0) {
+                    answer += "FB";
+                }
+                if (i != andNumber) {
+                    answer += " ";
+                }
+            }
+
+            return answer;
         }
     }
 }
