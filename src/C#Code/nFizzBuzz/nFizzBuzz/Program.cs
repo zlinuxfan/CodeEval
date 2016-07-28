@@ -1,38 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace nFizzBuzz {
-    class Program {
-        const string FileName = "G:/Develop/CodeEval/C#Code/FizzBuzz/forTest.txt";
-
+    internal static class Program {
+        
         static void Main(string[] args) {
-            string[] data = new string[20];
+            var fileName = args[0]; // "G:/Develop/CodeEval/src/C#Code/nFizzBuzz/forTest.txt";
+            string[] datas;
             var fizzBuzz = new FizzBuzz();
-            Console.WriteLine(fizzBuzz.play("2 7 15"));
 
-            Console.WriteLine("...");
-            Console.Read();
+            ReadFile(fileName, out datas);
+
+            foreach (var newGame in datas) {
+                Console.WriteLine(FizzBuzz.Play(newGame));
+            }
         }
 
-        public void ReadFile(string fileName, out string[] data) {
-            data = new string[20];
-            StreamReader fs = new StreamReader(fileName);
-            string str = "";
+        private static void ReadFile(string fileName, out string[] datas) {
             int index = 0;
+            datas = new string[20];
 
-            while (str != null) {
-                data[index++] = str = fs.ReadLine();
-            }
+            using (var reader = File.OpenText(fileName))
+                while (!reader.EndOfStream) {
+                    var line = reader.ReadLine();
+                    datas[index++] = line;
+                    if (null == line)
+                        continue;
+                }
         }
     }
 
     public class FizzBuzz {
-        public string play(string str) {
-            if (str.Equals("")) {
+        public static string Play(string str) {
+            if (string.IsNullOrEmpty(str)) {
                 return "";
             }
             var data =  str.Split(new char[] {' '});
@@ -41,7 +42,7 @@ namespace nFizzBuzz {
             var andNumber = int.Parse(data[2]);
             var answer = "";
 
-            for (int i = 1; i <= andNumber; i ++) {
+            for (var i = 1; i <= andNumber; i ++) {
                  if (i % firstNumber == 0 && i % secondNumber == 0) {
                     answer += "FB";
                 } else if (i % firstNumber == 0) {
