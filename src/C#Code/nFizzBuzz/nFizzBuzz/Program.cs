@@ -12,7 +12,10 @@ namespace nFizzBuzz {
         static void Main(string[] args) {
             string[] data = new string[20];
             var fizzBuzz = new FizzBuzz();
-            Console.WriteLine(fizzBuzz.play("1 2 2"));
+            Console.WriteLine(fizzBuzz.play("2 7 15"));
+
+            Console.WriteLine("...");
+            Console.Read();
         }
 
         public void ReadFile(string fileName, out string[] data) {
@@ -43,9 +46,11 @@ namespace nFizzBuzz {
                     answer += "FB";
                 } else if (i % firstNumber == 0) {
                     answer += "F";
-                } else if (i % secondNumber == 0) {
+                } else if (i%secondNumber == 0) {
                     answer += "B";
-                } 
+                } else {
+                    answer += i;
+                }
                 if (i != andNumber) {
                     answer += " ";
                 }
