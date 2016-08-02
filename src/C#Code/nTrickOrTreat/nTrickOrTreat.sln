@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nTrickOrTreat", "nTrickOrTreat\nTrickOrTreat.csproj", "{FA5CC236-3F27-4CFA-ADF3-072CFF1BDB13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nTrickOrTreat.Test", "UnitTestProject1\nTrickOrTreat.Test.csproj", "{50DBC0D1-93DB-4400-821A-738638265DA0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA5CC236-3F27-4CFA-ADF3-072CFF1BDB13} = {FA5CC236-3F27-4CFA-ADF3-072CFF1BDB13}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

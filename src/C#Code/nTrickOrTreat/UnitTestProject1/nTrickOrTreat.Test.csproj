@@ -66,6 +66,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nTrickOrTreat\nTrickOrTreat.csproj">
+      <Project>{FA5CC236-3F27-4CFA-ADF3-072CFF1BDB13}</Project>
+      <Name>nTrickOrTreat</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
